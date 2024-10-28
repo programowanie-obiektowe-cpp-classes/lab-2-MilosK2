@@ -4,8 +4,23 @@
 
 class ResourceManager
 {
-    ResourceManager(Resource& resource) : resource_(resource) {
+    ResourceManager() { resource_ = new Resource();
+    }
+    ResourceManager(const ResourceManager& resMan) { resource_ = resMan.resource_;
+    }
+    
+    ResourceManager& operator=(const ResourceManager& resMan)
+    { 
+        return *this;
     }
 
-    Resource& resource_;
+    ~ResourceManager() {
+
+    }
+    double get()
+    {
+        return resource_->get();
+    }
+
+    Resource* resource_=nullptr;
 };
