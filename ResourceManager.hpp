@@ -4,5 +4,8 @@
 
 class ResourceManager
 {
-    // Twoja implementacja tutaj
+    ResourceManager(Resource& resource) : resource_(resource) {
+    }
+
+    Resource& resource_;
 };
