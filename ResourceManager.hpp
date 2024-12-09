@@ -18,15 +18,16 @@ class ResourceManager
         *this->resource_ = *resMan.resource_;
         return *this;
         }
-        ResourceManager(const ResourceManager&& resMan)
+        ResourceManager(ResourceManager&& resMan) : resource_(resMan.resource_)
         {
-        resource_  = new Resource();
-        *resource_ = *resMan.resource_;
+        resMan.resource_ = nullptr;
         }
 
-        ResourceManager& operator=(const ResourceManager&& resMan)
+        ResourceManager& operator=(ResourceManager&& resMan) noexcept
         {
-        *this->resource_ = *resMan.resource_;
+        delete resource_;
+        resource_ = resMan.resource_;
+        resMan.resource_ = nullptr;
         return *this;
         }
 
